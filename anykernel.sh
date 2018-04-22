@@ -10,6 +10,7 @@ do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=mido
+supported.sdk=27
 '; } # end properties
 
 # shell variables
