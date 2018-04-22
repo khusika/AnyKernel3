@@ -12,6 +12,7 @@ do.cleanuponabort=1
 device.name1=tissot
 device.name2=Mi A1
 device.name3=tissot_sprout
+supported.sdk=27
 '; } # end properties
 
 # shell variables
