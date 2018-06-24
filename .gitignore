@@ -1,5 +1,6 @@
 build
 Image.gz-dtb
 *.zip
-dtbs/
+dtb-treble/*.dtb
+dtb-nontreble/*.dtb
 kernel/

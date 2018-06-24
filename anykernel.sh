@@ -62,8 +62,17 @@ if [ -f $compressed_image ]; then
     insert_line $ramdisk/overlay/init.rc "init.khusika.rc" after 'import /init.usb.rc' "import /init.khusika.rc";
   fi;
 
+  ui_print "Checking for Project Treble...";
+  if [-e /dev/block/bootdevice/by-name/vendor_a ] && [ ! -L /system/vendor ]; then
+    ui_print "Treble Status: Supported";
+    dtb=/tmp/anykernel/dtb-treble;
+  else
+    ui_print "Treble Status: Not supported";
+    dtb=/tmp/anykernel/dtb-nontreble;
+  fi;
+
   # Concatenate all of the dtbs to the kernel
-  cat $compressed_image /tmp/anykernel/dtbs/*.dtb > /tmp/anykernel/Image.gz-dtb;
+  cat $compressed_image $dtb/*.dtb > /tmp/anykernel/Image.gz-dtb;
 fi;
 
 
