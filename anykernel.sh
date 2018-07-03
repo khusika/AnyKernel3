@@ -37,11 +37,6 @@ dump_boot;
 
 # begin ramdisk changes
 
-# sepolicy
-+$bin/magiskpolicy --load /system_root/sepolicy --save $ramdisk/overlay/sepolicy \
-  "allow init rootfs file execute_no_trans" \
-;
-
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
 if [ -d $ramdisk/.subackup -o -d $ramdisk/.backup ]; then
   ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
@@ -59,6 +54,16 @@ if [ -d $ramdisk/.backup ]; then
   cp /system_root/init.rc $ramdisk/overlay;
   insert_line $ramdisk/overlay/init.rc "init.spectrum.rc" after 'import /init.usb.rc' "import /init.spectrum.rc";
 fi
+
+# Fix selinux denials for /init.*.sh
+$bin/magiskpolicy --load /system_root/sepolicy --save $ramdisk/overlay/sepolicy \
+  "allow init rootfs file execute_no_trans" \
+  "allow toolbox toolbox capability sys_admin" \
+  "allow toolbox property_socket sock_file write" \
+  "allow toolbox default_prop property_service set" \
+  "allow toolbox init unix_stream_socket connectto" \
+  "allow toolbox init fifo_file { getattr write }" && \
+  { cat "$ramdisk/overlay/sepolicy" > /system_root/sepolicy; }
 
 # end ramdisk changes
 
