@@ -10,7 +10,8 @@ do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=markw
-supported.sdk=27
+supported.sdk1=27
+supported.sdk2=28
 '; } # end properties
 
 # shell variables
