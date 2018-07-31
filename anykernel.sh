@@ -52,6 +52,9 @@ else
   patch_cmdline "skip_override" "";
 fi;
 
+# Clean up other kernels' ramdisk overlay files
+rm -rf $ramdisk/overlay;
+
 # Add our ramdisk files if Magisk is installed
 if [ -d $ramdisk/.backup ]; then
   mv $overlay $ramdisk;
