@@ -107,7 +107,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
   if [ "$match" != 1 ]; then
     abort "Unsupported device. Aborting...";
   fi;
-  ui_print "Checking Android version...";
+  ui_print "Checking Android SDK version...";
   romsdk="$(getprop ro.build.version.sdk)";
   for i in 1 2; do
     testsdk="$(file_getprop /tmp/anykernel/anykernel.sh supported.sdk$i)";
@@ -119,7 +119,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
   done;
   ui_print " ";
   if [ "$matchsdk" != 1 ]; then
-    abort "Unsupported Android version. Aborting...":
+    abort "Unsupported Android SDK version. Aborting...":
   fi;
   ui_print "Checking for Project Treble...";
   if [ "$(file_getprop /system/build.prop ro.treble.enabled)" == "true" ]; then
