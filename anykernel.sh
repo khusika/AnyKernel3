@@ -43,6 +43,21 @@ else
   patch_cmdline "skip_override" "";
 fi;
 
+if [ -d $ramdisk/.backup ]; then
+  overlay=$ramdisk/overlay;
+elif [ -d $ramdisk/.subackup ]; then
+  overlay=$ramdisk/boot;
+fi;
+
+list="init.rc";
+for rdfile in $list; do
+  rddir=$(dirname $rdfile);
+  mkdir -p $overlay/$rddir;
+  test ! -f $overlay/$rdfile && cp -rp /system/$rdfile $overlay/$rddir/;
+done;
+
+insert_line $overlay/init.rc "init.spectrum.rc" before "import /init.usb.rc" "import /init.spectrum.rc";
+
 # end ramdisk changes
 
 write_boot;
