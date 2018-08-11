@@ -35,7 +35,10 @@ dump_boot;
 
 # begin ramdisk changes
 
-
+# sepolicy
+$bin/magiskpolicy --load sepolicy --save sepolicy \
+  "allow init rootfs file execute_no_trans" \
+;
 
 # end ramdisk changes
 
