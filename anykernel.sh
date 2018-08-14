@@ -18,19 +18,19 @@ supported.sdk2=28
 block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
-
+overlay=/tmp/anykernel/overlay;
 
 ## AnyKernel methods (DO NOT CHANGE)
 # import patching functions/variables - see for reference
 . /tmp/anykernel/tools/ak2-core.sh;
 
-
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
 chmod -R 755 $ramdisk/sbin;
+chmod -R 755 $overlay/init.spectrum.rc;
+chmod -R 775 $overlay/init.spectrum.sh;
 chown -R root:root $ramdisk/*;
-
 
 ## AnyKernel install
 dump_boot;
@@ -38,7 +38,7 @@ dump_boot;
 # begin ramdisk changes
 
 # sepolicy
-$bin/magiskpolicy --load sepolicy --save sepolicy \
++$bin/magiskpolicy --load /system_root/sepolicy --save $ramdisk/overlay/sepolicy \
   "allow init rootfs file execute_no_trans" \
 ;
 
@@ -50,20 +50,12 @@ else
   patch_cmdline "skip_override" "";
 fi;
 
+# Add our ramdisk files if Magisk is installed
 if [ -d $ramdisk/.backup ]; then
-  overlay=$ramdisk/overlay;
-elif [ -d $ramdisk/.subackup ]; then
-  overlay=$ramdisk/boot;
-fi;
-
-list="init.rc";
-for rdfile in $list; do
-  rddir=$(dirname $rdfile);
-  mkdir -p $overlay/$rddir;
-  test ! -f $overlay/$rdfile && cp -rp /system/$rdfile $overlay/$rddir/;
-done;
-
-insert_line $overlay/init.rc "init.spectrum.rc" before "import /init.usb.rc" "import /init.spectrum.rc";
+  mv $overlay $ramdisk;
+  cp /system_root/init.rc $ramdisk/overlay;
+  insert_line $ramdisk/overlay/init.rc "init.spectrum.rc" after 'import /init.usb.rc' "import /init.spectrum.rc";
+fi
 
 # end ramdisk changes
 
