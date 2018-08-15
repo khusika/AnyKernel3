@@ -22,7 +22,7 @@ on property:sys.boot_completed=1
     write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,36864,46080"
 
 # Balance (default profile)
-on property:persist.spectrum.profile=0
+on property:persist.spectrum.profile=0 && property:init.svc.qcom-post-boot=stopped
 
     # CPU
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
@@ -69,7 +69,7 @@ on property:persist.spectrum.profile=0
     write /sys/module/cpu_boost/parameters/input_boost_enabled 0
 
 # Performance
-on property:persist.spectrum.profile=1
+on property:persist.spectrum.profile=1 && property:init.svc.qcom-post-boot=stopped
 
     # CPU
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
@@ -120,7 +120,7 @@ on property:persist.spectrum.profile=1
     write /sys/module/cpu_boost/parameters/input_boost_ms 2000
 
 # Battery
-on property:persist.spectrum.profile=2
+on property:persist.spectrum.profile=2 && property:init.svc.qcom-post-boot=stopped
 
     # CPU
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "electron"
@@ -167,7 +167,7 @@ on property:persist.spectrum.profile=2
     write /sys/module/cpu_boost/parameters/input_boost_enabled 0
 
 # Gaming
-on property:persist.spectrum.profile=3
+on property:persist.spectrum.profile=3 && property:init.svc.qcom-post-boot=stopped
 
     # CPU
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
