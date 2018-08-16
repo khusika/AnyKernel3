@@ -9,7 +9,7 @@ on post-fs-data
 on property:sys.boot_completed=1
     # Set default profile on first boot
     exec u:r:init:s0 root root -- /init.spectrum.sh
-    exec u:r:su:s0 root root -- /init.spectrum.sh
+    # exec u:r:su:s0 root root -- /init.spectrum.sh
 
     # Add kernel name
     setprop persist.spectrum.kernel "Xiaomi Redmi 4 Prime"
