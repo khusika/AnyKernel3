@@ -29,6 +29,7 @@ overlay=/tmp/anykernel/overlay;
 chmod -R 750 $ramdisk/*;
 chmod -R 755 $ramdisk/sbin;
 chmod -R 755 $overlay/init.spectrum.rc;
+chmod -R 755 $overlay/init.khusika.rc;
 chmod -R 775 $overlay/init.spectrum.sh;
 chown -R root:root $ramdisk/*;
 
@@ -53,6 +54,7 @@ if [ -d $ramdisk/.backup ]; then
   mv $overlay $ramdisk;
   cp /system_root/init.rc $ramdisk/overlay;
   insert_line $ramdisk/overlay/init.rc "init.spectrum.rc" after 'import /init.usb.rc' "import /init.spectrum.rc";
+  insert_line $ramdisk/overlay/init.rc "init.khusika.rc" after 'import /init.spectrum.rc' "import /init.khusika.rc";
 fi
 
 # Fix selinux denials for /init.*.sh
