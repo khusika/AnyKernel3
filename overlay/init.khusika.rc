@@ -5,9 +5,13 @@
 # Ramdisk for khusika's kernel
 
 on init
+    #Zram configs
+    write /sys/block/zram0/reset 1
     write /sys/block/zram0/comp_algorithm lz4
     write /sys/block/zram0/max_comp_streams 4
     write /sys/block/zram0/disksize 1073741824
+    mkswap /dev/block/zram0
+    swapon /dev/block/zram0 -p 32758
 
 on post-fs-data
     # Boot time fs tune
