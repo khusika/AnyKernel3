@@ -40,7 +40,7 @@ on property:persist.spectrum.profile=0 && property:init.svc.qcom-post-boot=stopp
     # GPU
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     write /sys/class/devfreq/soc\:qcom,cpubw/governor bw_hwmon
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 4
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
     write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 650000000
     write /sys/class/kgsl/kgsl-3d0/max_gpuclk 650000000
