@@ -91,25 +91,10 @@ on property:persist.spectrum.profile=1 && property:init.svc.qcom-post-boot=stopp
 on property:persist.spectrum.profile=2 && property:init.svc.qcom-post-boot=stopped
 
     # CPU
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "electron"
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1958400
-    write /sys/devices/system/cpu/cpufreq/electron/above_hispeed_delay 20000
-    write /sys/devices/system/cpu/cpufreq/electron/align_windows 0
-    write /sys/devices/system/cpu/cpufreq/electron/boost 0
-    write /sys/devices/system/cpu/cpufreq/electron/boostpulse_duration 80000
-    write /sys/devices/system/cpu/cpufreq/electron/go_hispeed_load 99
-    write /sys/devices/system/cpu/cpufreq/electron/hispeed_freq 0
-    write /sys/devices/system/cpu/cpufreq/electron/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/electron/max_freq_hysteresis 0
-    write /sys/devices/system/cpu/cpufreq/electron/min_sample_time 80000
-    write /sys/devices/system/cpu/cpufreq/electron/powersave_bias 0
-    write /sys/devices/system/cpu/cpufreq/electron/screen_off_maxfreq 1401600
-    write /sys/devices/system/cpu/cpufreq/electron/target_loads 90
-    write /sys/devices/system/cpu/cpufreq/electron/timer_rate 50000
-    write /sys/devices/system/cpu/cpufreq/electron/timer_slack 80000
-    write /sys/devices/system/cpu/cpufreq/electron/use_migration_notif 0
-    write /sys/devices/system/cpu/cpufreq/electron/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1036800
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 1500
 
     # GPU
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
