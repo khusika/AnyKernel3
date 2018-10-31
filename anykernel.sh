@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=ProjectK by khusika @ xda-developers
+kernel.string=Canting by khusika @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
