@@ -122,7 +122,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
     abort "Unsupported Android SDK version. Aborting...":
   fi;
   ui_print "Checking for Project Treble...";
-  if [ "$(getprop ro.treble.enabled)" == "true" ]; then
+  if [ "$(file_getprop /system/build.prop ro.treble.enabled)" == "true" ]; then
     ui_print "Treble Status: Supported";
     dtb=/tmp/anykernel/dtb-treble;
   else
