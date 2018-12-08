@@ -39,7 +39,7 @@ dump_boot;
 # begin ramdisk changes
 
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
-if [ -d $ramdisk/.subackup -o -d $ramdisk/.backup ]; then
+if [ -d $ramdisk/.backup -o -d $ramdisk/.magisk ]; then
   ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
   patch_cmdline "skip_override" "skip_override";
 else
@@ -50,7 +50,7 @@ fi;
 rm -rf $ramdisk/overlay;
 
 # Add our ramdisk files if Magisk is installed
-if [ -d $ramdisk/.backup ]; then
+if [ -d $ramdisk/.backup -o -d $ramdisk/.magisk ]; then
   mv $overlay $ramdisk;
   cp /system_root/init.rc $ramdisk/overlay;
   insert_line $ramdisk/overlay/init.rc "init.spectrum.rc" after 'import /init.usb.rc' "import /init.spectrum.rc";
