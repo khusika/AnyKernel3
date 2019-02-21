@@ -52,20 +52,20 @@ rm -rf $ramdisk/overlay;
 # Add our ramdisk files if Magisk is installed
 if [ -d $ramdisk/.backup -o -d $ramdisk/.magisk ]; then
   mv $overlay $ramdisk;
-  cp /system_root/init.rc $ramdisk/overlay;
+  cp /init.rc $ramdisk/overlay;
   insert_line $ramdisk/overlay/init.rc "init.spectrum.rc" after 'import /init.usb.rc' "import /init.spectrum.rc";
   insert_line $ramdisk/overlay/init.rc "init.khusika.rc" after 'import /init.spectrum.rc' "import /init.khusika.rc";
 fi
 
 # Fix selinux denials for /init.*.sh
-$bin/magiskpolicy --load /system_root/sepolicy --save $ramdisk/overlay/sepolicy \
+$bin/magiskpolicy --load /sepolicy --save $ramdisk/overlay/sepolicy \
   "allow init rootfs file execute_no_trans" \
   "allow toolbox toolbox capability sys_admin" \
   "allow toolbox property_socket sock_file write" \
   "allow toolbox default_prop property_service set" \
   "allow toolbox init unix_stream_socket connectto" \
   "allow toolbox init fifo_file { getattr write }" && \
-  { cat "$ramdisk/overlay/sepolicy" > /system_root/sepolicy; }
+  { cat "$ramdisk/overlay/sepolicy" > /sepolicy; }
 
 # end ramdisk changes
 
