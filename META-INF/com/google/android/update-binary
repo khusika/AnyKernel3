@@ -162,6 +162,12 @@ if [ "$supported_ver" ]; then
     ui_print " ";
     abort "Unsupported Android version. Aborting...";
   fi;
+  is_miui="$(file_getprop /system/build.prop 'ro.miui.ui.version.code')"
+  if [[ -z $is_miui ]]; then
+    ui_print "You are running a custom ROM!"
+  else
+    abort "You are running MEMEUI! Aborting...";
+  fi
 fi;
 
 ui_print "Installing...";
