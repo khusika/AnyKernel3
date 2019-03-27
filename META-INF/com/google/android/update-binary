@@ -166,7 +166,7 @@ if [ "$supported_ver" ]; then
   if [[ -z $is_miui ]]; then
     ui_print "You are running a custom ROM!"
   else
-    abort "You are running MEMEUI! Aborting...";
+    ui_print "WARNING: You are running MEMEUI!";
   fi
 fi;
 
