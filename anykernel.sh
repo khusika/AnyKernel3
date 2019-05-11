@@ -63,7 +63,7 @@ if [ -f $compressed_image ]; then
   fi;
 
   ui_print "Checking for Project Treble...";
-  if [-e /dev/block/bootdevice/by-name/vendor_a ] && [ ! -L /system/vendor ]; then
+  if [ "$(file_getprop /system_root/system/build.prop ro.treble.enabled)" = "true" ]; then
     ui_print "Treble Status: Supported";
     dtb=/tmp/anykernel/dtb-treble;
   else
