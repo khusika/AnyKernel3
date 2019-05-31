@@ -17,7 +17,6 @@ supported.versions=9
 block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;
 is_slot_device=1;
 ramdisk_compression=auto;
-overlay=/tmp/anykernel/overlay;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
@@ -29,7 +28,6 @@ overlay=/tmp/anykernel/overlay;
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
-chmod -R 755 $overlay/init.khusika.rc;
 
 
 ## AnyKernel install
@@ -37,13 +35,15 @@ dump_boot;
 
 # begin ramdisk changes
 
+# init.rc
+restore_file init.rc;
+backup_file init.rc;
+insert_line init.rc 'khusika' after 'import /init.${ro.zygote}.rc' 'import /init.khusika.rc';
+
 # sepolicy
 $bin/magiskpolicy --load sepolicy --save sepolicy \
   "allow init rootfs file execute_no_trans" \
 ;
-
-# Clean up other kernels' ramdisk overlay files
-rm -rf $ramdisk/overlay;
 
 # If the kernel image and dtbs are separated in the zip
 decompressed_image=/tmp/anykernel/kernel/Image
@@ -56,10 +56,6 @@ if [ -f $compressed_image ]; then
     $bin/magiskboot --hexpatch $decompressed_image 736B69705F696E697472616D667300 77616E745F696E697472616D667300;
     $bin/magiskboot --compress=gzip $decompressed_image $compressed_image;
 
-    # Add our ramdisk files
-    mv $overlay $ramdisk;
-    cp /system_root/init.rc $ramdisk/overlay;
-    insert_line $ramdisk/overlay/init.rc "init.khusika.rc" after 'import /init.usb.rc' "import /init.khusika.rc";
   fi;
 
   ui_print "Checking for Project Treble...";
