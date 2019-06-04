@@ -50,6 +50,8 @@ if [ -f $compressed_image ]; then
     $bin/magiskboot --decompress $compressed_image $decompressed_image;
     $bin/magiskboot --hexpatch $decompressed_image 736B69705F696E697472616D667300 77616E745F696E697472616D667300;
     $bin/magiskboot --compress=gzip $decompressed_image $compressed_image;
+  else
+    ui_print " "; ui_print "Magisk not detected! Some tweaks will be missing...";
   fi;
 
   # Concatenate all of the dtbs to the kernel
