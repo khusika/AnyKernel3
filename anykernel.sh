@@ -35,11 +35,6 @@ dump_boot;
 
 # begin ramdisk changes
 
-# init.rc
-restore_file init.rc;
-backup_file init.rc;
-insert_line init.rc 'khusika' after 'import /init.${ro.zygote}.rc' 'import /init.khusika.rc';
-
 # sepolicy
 $bin/magiskpolicy --load sepolicy --save sepolicy \
   "allow init rootfs file execute_no_trans" \
