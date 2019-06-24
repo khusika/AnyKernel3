@@ -12,17 +12,5 @@ on post-fs-data
     exec u:r:magisk:s0 -- /system/bin/mkswap /dev/block/zram0
     exec u:r:magisk:s0 -- /system/bin/swapon /dev/block/zram0
 
-    #LMKD Parameters
-    setprop ro.lmk.low "1001"
-    setprop ro.lmk.medium "800"
-    setprop ro.lmk.critical "0"
-    setprop ro.lmk.critical_upgrade "false"
-    setprop ro.lmk.upgrade_pressure "100"
-    setprop ro.lmk.downgrade_pressure "100"
-    setprop ro.lmk.kill_heaviest_task "true"
-    setprop ro.lmk.kill_timeout_ms "100"
-    setprop ro.lmk.use_minfree_levels "true"
-    setprop ro.lmk.log_stats "true"
-
 on property:init.svc.qcom-post-boot=stopped
     setprop sys.io.scheduler "cfq"
