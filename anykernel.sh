@@ -10,6 +10,7 @@ do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=tissot
+supported.kernel=4.9
 supported.versions=9
 supported.patchlevels=2019-06 -
 '; } # end properties

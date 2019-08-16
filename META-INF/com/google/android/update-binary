@@ -213,6 +213,11 @@ if [ "$supported_ver" ]; then
   else
     abort " " "Unsupported Android version. Aborting...";
   fi;
+  supported_kernel=$(file_getprop anykernel.sh supported.kernel | $bb grep -oE '[0-9]{1}.[0-9]|-');
+  kernel_version="$(uname -r | $bb grep -oE '[0-9]{1}.[0-9]|-' | head -n 1)";
+  if ![[ $kernel_version == $supported_kernel ]]; then
+    abort "You are running unsupported kernel version! Aborting...";
+  fi
   is_miui="$(file_getprop /system_root/system/build.prop 'ro.build.host')" == "mi-server";
   if [[ $is_miui ]]; then
     abort "You are running stock ROM! Aborting...";
