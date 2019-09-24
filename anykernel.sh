@@ -10,7 +10,7 @@ do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=beryllium
-supported.versions=9, 9.0
+supported.versions=9, 9.0, 10, 10.0
 supported.patchlevels=2019-06 -
 '; } # end properties
 
