@@ -42,6 +42,14 @@ $bin/magiskpolicy --load sepolicy --save sepolicy \
   "allow init rootfs file execute_no_trans" \
 ;
 
+# Set Android version for kernel
+ver="$(file_getprop /system/build.prop ro.build.version.release)"
+if [ ! -z "$ver" ]; then
+  patch_cmdline "androidboot.version" "androidboot.version=$ver"
+else
+  patch_cmdline "androidboot.version" ""
+fi
+
 # If the kernel image and dtbs are separated in the zip
 decompressed_image=/tmp/anykernel/kernel/Image
 compressed_image=$decompressed_image.gz
