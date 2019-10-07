@@ -17,7 +17,9 @@ write /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us 500
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us 20000
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/iowait_boost_enable 1
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq 0
+write /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl 0
 write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
 write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
 write /sys/devices/system/cpu/cpufreq/policy4/schedutil/iowait_boost_enable 1
 write /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq 0
+write /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl 0
