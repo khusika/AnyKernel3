@@ -13,6 +13,7 @@ swapon /dev/block/zram0
 
 #CPU configs
 write /sys/module/cpu_boost/parameters/input_boost_ms 64
+write /sys/module/cpu_boost/parameters/input_boost_freq "0:748800"
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us 500
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us 20000
 write /sys/devices/system/cpu/cpufreq/policy0/schedutil/iowait_boost_enable 1
