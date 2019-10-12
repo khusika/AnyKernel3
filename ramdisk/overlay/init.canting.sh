@@ -2,6 +2,8 @@
 
 write() { echo "$2" > "$1"; }
 
+sleep 10;
+
 setprop sys.io.scheduler "cfq"
 
 #Zram configs
