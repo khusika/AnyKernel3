@@ -43,7 +43,7 @@ $bin/magiskpolicy --load sepolicy --save sepolicy \
 ;
 
 # Set Android version for kernel
-ver="$(file_getprop /system/build.prop ro.build.version.release)"
+ver="$(file_getprop /system_root/system/build.prop ro.build.version.release)"
 if [ ! -z "$ver" ]; then
   patch_cmdline "androidboot.version" "androidboot.version=$ver"
 else
