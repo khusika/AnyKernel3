@@ -268,7 +268,7 @@ do_versioncheck() {
   if [[ -z $is_miui ]]; then
     ui_print "You are running a custom ROM!"
   else
-    ui_print "WARNING: You are running MEMEUI!";
+    abort "You are running MEMEUI! Aborting...";
   fi
 }
 do_levelcheck() {
