@@ -1,9 +1,0 @@
-# SPDX-License-Identifier: GPL-3.0-or-later
-#
-# Copyright (C) 2019 Khusika Dhamar Gusti (khusika)
-#
-# Ramdisk for Canting Kernel
-
-on property:init.svc.qcom-post-boot=stopped
-    exec u:r:magisk:s0 root root -- /init.canting.sh
-    exec u:r:su:s0 root root -- /init.canting.sh
