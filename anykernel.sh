@@ -12,7 +12,7 @@ do.cleanup=1
 do.cleanuponabort=1
 device.name1=beryllium
 supported.versions=10, 10.0
-supported.patchlevels=2020-01 -
+supported.patchlevels=2020-04 -
 '; } # end properties
 
 # shell variables
