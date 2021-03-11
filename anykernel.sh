@@ -11,7 +11,7 @@ do.systemless=1
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=polaris
-supported.versions=10, 10.0
+supported.versions=10-11
 supported.patchlevels=2021-01 -
 '; } # end properties
 
